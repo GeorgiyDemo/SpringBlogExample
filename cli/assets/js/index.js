@@ -28,4 +28,12 @@ $(document).ready(function(){
 			body: JSON.stringify(varData)
 		});
 	});
+
+	$(document).ready(function(){
+		$.ajax({ url: "/cli/tag/info.html",
+				context: document.body,
+				success: function(){
+				   alert("done");
+				}});
+		});
 });

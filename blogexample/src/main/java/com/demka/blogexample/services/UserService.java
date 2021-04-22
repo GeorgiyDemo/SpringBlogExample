@@ -1,7 +1,9 @@
 package com.demka.blogexample.services;
 
+import com.demka.blogexample.entities.AuthEntity;
 import com.demka.blogexample.entities.UserEntity;
 import com.demka.blogexample.repos.UserRepo;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,11 @@ public class UserService {
 
     public Optional<UserEntity> find(Long id){
         return userRepo.findById(id);
+    }
+
+    public boolean authUser(AuthEntity authEntity){
+        Optional<UserEntity> authResult = userRepo.findByEmailAndPassword(authEntity.getEmail(), authEntity.getPassword());
+        return authResult.isPresent();
     }
 
 }

@@ -22,12 +22,6 @@ public class UserController {
         this.itemService = itemService;
     }
 
-    @PostMapping()
-    public ResponseEntity<?> createItem(@RequestBody UserEntity item) {
-        itemService.create(item);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
     @GetMapping()
     public ResponseEntity<?> findAllItems() {
         List<UserEntity> itemList = itemService.findAll();

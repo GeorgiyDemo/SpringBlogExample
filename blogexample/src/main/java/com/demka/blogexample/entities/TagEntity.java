@@ -23,4 +23,9 @@ public class TagEntity {
 
     @ManyToMany(mappedBy = "tags")
     private Set<PostEntity> posts;
+
+    public TagEntity(String name, String slug){
+        this.name = name;
+        this.slug = slug;
+    }
 }
