@@ -8,15 +8,17 @@ $(document).ready(function(){
 				console.log(response);
 			},
 			error: function(response) {
-				console.log("Что-то поло не так", error);
+				console.log("Что-то пошло не так", error);
 			}
 		});
 	});
 	
-	$("#btn2").click(async function(){
+	$("#tag-create-button").click(async function(){
+		console.log("ААААА")
+		alert(document.getElementById("tag-name").value);
 		let varData = {
-			"name": "NAME2",
-			"slug": "SLUGNAME"
+			"name": document.getElementById("tag-name").value,
+			"slug": document.getElementById("tag-slug").value
 		};
 		let response = await fetch("http://localhost:8080/tags", {
 			method: 'POST',
