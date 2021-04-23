@@ -1,5 +1,6 @@
-package com.demka.blogexample.entities;
+package com.demka.blogexample.entities.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Table(name = "users")
-public class UserEntity {
+public class UserDBEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,18 +19,20 @@ public class UserEntity {
     @Column(unique = true)
     private String login;
 
+    @JsonIgnore
     @Column(unique = true)
     private String email;
 
+    @JsonIgnore
     private String password;
     private boolean isActive;
 
     @OneToMany(mappedBy = "authorPost")
-    private Set<PostEntity> posts;
+    private Set<PostDBEntity> posts;
 
     @OneToMany(mappedBy = "authorComment")
-    private Set<CommentEntity> comments;
+    private Set<CommentDBEntity> comments;
 
     @ManyToMany(mappedBy = "likes")
-    private Set<PostEntity> likes;
+    private Set<PostDBEntity> likes;
 }

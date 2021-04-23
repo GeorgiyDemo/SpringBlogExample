@@ -1,8 +1,7 @@
 package com.demka.blogexample.services;
 
-import com.demka.blogexample.entities.PostEntity;
+import com.demka.blogexample.entities.db.PostDBEntity;
 import com.demka.blogexample.repos.PostsRepo;
-import com.demka.blogexample.repos.TagsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,23 +18,23 @@ public class PostsService {
         this.postsRepo = postsRepo;
     }
 
-    public void create(PostEntity client) {
+    public void create(PostDBEntity client) {
         postsRepo.save(client);
     }
 
-    public void update(PostEntity client) {
+    public void update(PostDBEntity client) {
         postsRepo.save(client);
     }
 
-    public void delete(PostEntity client) {
+    public void delete(PostDBEntity client) {
         postsRepo.delete(client);
     }
 
-    public List<PostEntity> findAll() {
+    public List<PostDBEntity> findAll() {
         return postsRepo.findAll();
     }
 
-    public Optional<PostEntity> find(Long id) {
+    public Optional<PostDBEntity> find(Long id) {
         return postsRepo.findById(id);
     }
 }

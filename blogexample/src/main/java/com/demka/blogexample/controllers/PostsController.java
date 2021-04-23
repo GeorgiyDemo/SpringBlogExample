@@ -1,8 +1,7 @@
 package com.demka.blogexample.controllers;
 
-import com.demka.blogexample.entities.PostEntity;
+import com.demka.blogexample.entities.db.PostDBEntity;
 import com.demka.blogexample.services.PostsService;
-import com.demka.blogexample.services.TagsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +22,14 @@ public class PostsController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> createItem(@RequestBody PostEntity item) {
+    public ResponseEntity<?> createItem(@RequestBody PostDBEntity item) {
         itemService.create(item);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping()
     public ResponseEntity<?> findAllItems() {
-        List<PostEntity> itemList = itemService.findAll();
+        List<PostDBEntity> itemList = itemService.findAll();
         if (itemList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -39,20 +38,20 @@ public class PostsController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
-        Optional<PostEntity> currentItem = itemService.find(id);
-        if (currentItem.isEmpty()){
+        Optional<PostDBEntity> currentItem = itemService.find(id);
+        if (currentItem.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(currentItem.get(), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateItem(@PathVariable(name = "id") Long id, @RequestBody PostEntity newItem) {
-        Optional<PostEntity> currentItemOptional = itemService.find(id);
-        if (currentItemOptional.isEmpty()){
+    public ResponseEntity<?> updateItem(@PathVariable(name = "id") Long id, @RequestBody PostDBEntity newItem) {
+        Optional<PostDBEntity> currentItemOptional = itemService.find(id);
+        if (currentItemOptional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        PostEntity currentItem = currentItemOptional.get();
+        PostDBEntity currentItem = currentItemOptional.get();
         currentItem.setSlug(newItem.getSlug());
         currentItem.setAuthorPost(newItem.getAuthorPost());
         currentItem.setComments(newItem.getComments());
@@ -67,8 +66,8 @@ public class PostsController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteItem(@PathVariable(name = "id") Long id) {
-        Optional<PostEntity> currentItemOptional = itemService.find(id);
-        if (currentItemOptional.isEmpty()){
+        Optional<PostDBEntity> currentItemOptional = itemService.find(id);
+        if (currentItemOptional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         itemService.delete(currentItemOptional.get());

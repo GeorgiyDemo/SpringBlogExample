@@ -1,4 +1,4 @@
-package com.demka.blogexample.entities;
+package com.demka.blogexample.entities.db;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Table(name = "tags")
-public class TagEntity {
+public class TagDBEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -22,9 +22,9 @@ public class TagEntity {
     private String slug;
 
     @ManyToMany(mappedBy = "tags")
-    private Set<PostEntity> posts;
+    private Set<PostDBEntity> posts;
 
-    public TagEntity(String name, String slug){
+    public TagDBEntity(String name, String slug) {
         this.name = name;
         this.slug = slug;
     }

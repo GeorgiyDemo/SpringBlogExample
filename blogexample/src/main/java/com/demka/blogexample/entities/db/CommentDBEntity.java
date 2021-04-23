@@ -1,4 +1,4 @@
-package com.demka.blogexample.entities;
+package com.demka.blogexample.entities.db;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,18 +9,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Table(name = "comments")
-public class CommentEntity {
+public class CommentDBEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne
-    @JoinColumn(name="author_id", nullable = false)
-    private UserEntity authorComment;
+    @JoinColumn(name = "author_id", nullable = false)
+    private UserDBEntity authorComment;
 
     @ManyToOne
-    @JoinColumn(name="post_id", nullable = false)
-    private PostEntity post;
+    @JoinColumn(name = "post_id", nullable = false)
+    private PostDBEntity post;
 
     private String text;
 }

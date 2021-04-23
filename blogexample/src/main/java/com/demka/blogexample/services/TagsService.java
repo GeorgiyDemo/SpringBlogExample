@@ -1,8 +1,7 @@
 package com.demka.blogexample.services;
 
-import com.demka.blogexample.entities.TagEntity;
+import com.demka.blogexample.entities.db.TagDBEntity;
 import com.demka.blogexample.repos.TagsRepo;
-import com.demka.blogexample.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,23 +18,23 @@ public class TagsService {
         this.tagsRepo = tagsRepo;
     }
 
-    public void create(TagEntity client) {
+    public void create(TagDBEntity client) {
         tagsRepo.save(client);
     }
 
-    public void update(TagEntity client) {
+    public void update(TagDBEntity client) {
         tagsRepo.save(client);
     }
 
-    public void delete(TagEntity client) {
+    public void delete(TagDBEntity client) {
         tagsRepo.delete(client);
     }
 
-    public List<TagEntity> findAll() {
+    public List<TagDBEntity> findAll() {
         return tagsRepo.findAll();
     }
 
-    public Optional<TagEntity> find(Long id) {
+    public Optional<TagDBEntity> find(Long id) {
         return tagsRepo.findById(id);
     }
 }

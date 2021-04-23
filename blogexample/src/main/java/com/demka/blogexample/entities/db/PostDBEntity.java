@@ -1,4 +1,4 @@
-package com.demka.blogexample.entities;
+package com.demka.blogexample.entities.db;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,27 +11,27 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Table(name = "posts")
-public class PostEntity {
+public class PostDBEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(unique = true)
-    private  String slug;
+    private String slug;
 
     @ManyToOne
-    @JoinColumn(name="author_id", nullable = false)
-    private UserEntity authorPost;
+    @JoinColumn(name = "author_id", nullable = false)
+    private UserDBEntity authorPost;
 
     @OneToMany(mappedBy = "post")
-    private List<CommentEntity> comments;
+    private List<CommentDBEntity> comments;
 
     @ManyToMany
     @JoinTable(
             name = "posts_tags",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private Set<TagEntity> tags;
+    private Set<TagDBEntity> tags;
 
     private String text;
     private String title;
@@ -41,7 +41,7 @@ public class PostEntity {
             name = "likes",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<UserEntity> likes;
+    private Set<UserDBEntity> likes;
 
 
 }

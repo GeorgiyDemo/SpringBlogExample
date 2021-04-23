@@ -1,12 +1,14 @@
 package com.demka.blogexample.controllers;
 
-import com.demka.blogexample.entities.AuthEntity;
-import com.demka.blogexample.entities.UserEntity;
+import com.demka.blogexample.entities.db.UserDBEntity;
+import com.demka.blogexample.entities.request.AuthRequestEntity;
 import com.demka.blogexample.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthController {
@@ -20,26 +22,28 @@ public class AuthController {
 
     /**
      * Авторизация пользователя
-     * @param authEntity - сущность для авторизации
+     *
+     * @param authRequestEntity - сущность для авторизации
      * @return
      */
     @PostMapping("/auth")
-    public ResponseEntity<?> authUser(@RequestBody AuthEntity authEntity) {
-        if (userService.authUser(authEntity)){
-            return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> authUser(@RequestBody AuthRequestEntity authRequestEntity) {
+
+        String result = userService.authUser(authRequestEntity);
+        if (result != null) {
+            return new ResponseEntity<>(result, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     /**
-     * Регистрация пользователя в системе
+     * TODO: Регистрация пользователя в системе
+     *
      * @param user - сущность пользователя
      * @return
      */
     @PostMapping("/registration")
-    public ResponseEntity<?> regUser(@RequestBody UserEntity user) {
-        userService.create(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> regUser(@RequestBody UserDBEntity user) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
-
 }

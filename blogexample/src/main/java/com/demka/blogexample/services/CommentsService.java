@@ -1,8 +1,7 @@
 package com.demka.blogexample.services;
 
-import com.demka.blogexample.entities.CommentEntity;
+import com.demka.blogexample.entities.db.CommentDBEntity;
 import com.demka.blogexample.repos.CommentsRepo;
-import com.demka.blogexample.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,27 +14,27 @@ public class CommentsService {
     private final CommentsRepo commentsRepo;
 
     @Autowired
-    public CommentsService(CommentsRepo commentsRepo){
+    public CommentsService(CommentsRepo commentsRepo) {
         this.commentsRepo = commentsRepo;
     }
 
-    public void create(CommentEntity client){
+    public void create(CommentDBEntity client) {
         commentsRepo.save(client);
     }
 
-    public void update(CommentEntity client){
+    public void update(CommentDBEntity client) {
         commentsRepo.save(client);
     }
 
-    public void delete(CommentEntity client){
+    public void delete(CommentDBEntity client) {
         commentsRepo.delete(client);
     }
 
-    public List<CommentEntity> findAll(){
+    public List<CommentDBEntity> findAll() {
         return commentsRepo.findAll();
     }
 
-    public Optional<CommentEntity> find(Long id){
+    public Optional<CommentDBEntity> find(Long id) {
         return commentsRepo.findById(id);
     }
 
