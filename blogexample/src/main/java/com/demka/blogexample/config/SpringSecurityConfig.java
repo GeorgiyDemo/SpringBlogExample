@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,16 +23,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //неавторизаованные пользователи: два поста (регистрация/авторизация) + геты
         //авторизованные пользователи: все остальное
-        http
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .httpBasic()
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/auth*").permitAll()
-                .antMatchers(HttpMethod.POST,"/registration*").permitAll()
-                .antMatchers(HttpMethod.POST, "/**").hasRole("AUTHUSER")
-                .antMatchers(HttpMethod.PUT, "/**").hasRole("AUTHUSER")
-                .antMatchers(HttpMethod.DELETE, "/**").hasRole("AUTHUSER")
+                .antMatchers(HttpMethod.POST,"/auth").permitAll()
+                .antMatchers(HttpMethod.POST,"/registration").permitAll()
+                .anyRequest().hasRole("AUTHUSER")
                 .and()
                 .csrf().disable()
                 .formLogin().disable();

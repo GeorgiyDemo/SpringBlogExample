@@ -14,8 +14,6 @@ $(document).ready(function(){
 	});
 	
 	$("#tag-create-button").click(async function(){
-		console.log("ААААА")
-		alert(document.getElementById("tag-name").value);
 		let varData = {
 			"name": document.getElementById("tag-name").value,
 			"slug": document.getElementById("tag-slug").value
