@@ -37,7 +37,7 @@ $(document).ready(function () {
 
         const location = window.location.toString();
         //Если это таблица тегов
-        if (location.includes("tag/info.html")) {
+        if (location.includes("tags/all.html")) {
 
             $.ajax({
                 url: "http://localhost:8080/tags",

@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
-    <title>Login - Blog example</title>
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Создание нового тега</title>
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i" rel="stylesheet">
-    <link href="assets/fonts/simple-line-icons.min.css" rel="stylesheet">
+    <link href="../assets/fonts/simple-line-icons.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" rel="stylesheet">
-    <link href="assets/css/smoothproducts.css" rel="stylesheet">
+    <link href="../assets/css/smoothproducts.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,9 +19,9 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
-                <li class="nav-item"><a class="nav-link active" href="login.html">Авторизация</a></li>
-                <li class="nav-item"><a class="nav-link" href="registration.html">Регистрация</a></li>
+                <li class="nav-item"><a class="nav-link active" href="../index.html">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="../login.html">Авторизация</a></li>
+                <li class="nav-item"><a class="nav-link" href="../registration.html">Регистрация</a></li>
 
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -29,8 +29,8 @@
                         Теги
                     </a>
                     <div aria-labelledby="tagDropdownMenuLink" class="dropdown-menu">
-                        <a class="dropdown-item" href="tags/all.html">Все теги</a>
-                        <a class="dropdown-item" href="tags/create.html">Создание</a>
+                        <a class="dropdown-item" href="../tags/all.html">Все теги</a>
+                        <a class="dropdown-item" href="../tags/create.html">Создание</a>
                     </div>
                 </li>
 
@@ -40,8 +40,8 @@
                         Блоги
                     </a>
                     <div aria-labelledby="blogDropdownMenuLink" class="dropdown-menu">
-                        <a class="dropdown-item" href="blogs/all.html">Все блоги</a>
-                        <a class="dropdown-item" href="blogs/create.html">Создание</a>
+                        <a class="dropdown-item" href="../blogs/all.html">Все блоги</a>
+                        <a class="dropdown-item" href="../blogs/create.html">Создание</a>
                     </div>
                 </li>
             </ul>
@@ -52,20 +52,15 @@
     <section class="clean-block clean-form dark">
         <div class="container">
             <div class="block-heading">
-                <h2 class="text-info">Авторизация</h2>
-                <p>Пожалуйста, введите данные авторизации</p>
+                <h2 class="text-info">Добавление нового тега</h2>
             </div>
-            <form>
-                <div class="form-group"><label for="email">Email</label><input class="form-control item" id="email"
-                                                                               type="email"></div>
-                <div class="form-group"><label for="password">Пароль</label><input class="form-control" id="password"
-                                                                                   type="password"></div>
-                <div class="form-group">
-                    <div class="form-check"><input class="form-check-input" id="checkbox" type="checkbox"><label
-                            class="form-check-label" for="checkbox">Запомнить меня</label></div>
-                </div>
-                <button class="btn btn-primary btn-block" type="submit">Вход</button>
-            </form>
+            <div>
+                <div class="form-group"><label for="tag-name">name</label><input class="form-control item" id="tag-name"
+                                                                                 type="text"></div>
+                <div class="form-group"><label for="tag-slug">slug</label><input class="form-control" id="tag-slug"
+                                                                                 type="text"></div>
+                <button class="btn btn-primary btn-block" id="tag-create-button">Добавить</button>
+            </div>
         </div>
     </section>
 </main>
@@ -78,11 +73,12 @@
         <p>meow</p>
     </div>
 </footer>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-<script src="assets/js/smoothproducts.min.js"></script>
-<script src="assets/js/theme.js"></script>
+<script src="../assets/js/smoothproducts.min.js"></script>
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/index.js"></script>
 </body>
 
 </html>
