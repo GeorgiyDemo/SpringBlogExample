@@ -29,12 +29,11 @@ $(document).ready(function () {
             }
 
         }).catch(function (error) {
-            console.log('Запрос умер', error)
+            console.log("Не удалось создать тег", error);
         });
     });
 
     $(document).ready(function () {
-
         const location = window.location.toString();
         //Если это таблица тегов
         if (location.includes("tags/all.html")) {
@@ -59,9 +58,57 @@ $(document).ready(function () {
                     }
                 },
                 error: function (error) {
-                    alert("Что-то пошло не так", error);
+                    console.log("Не удалось получить теги", error);
                 }
             });
+        }
+
+        //Если это страница с созданием блога
+        else if (location.includes("blogs/create.html")) {
+
+            //Запрашиваем тегм
+            $.ajax({
+                url: "http://localhost:8080/tags",
+                type: "GET",
+                dataType: "json",
+                success: function (response) {
+                    const element = document.getElementById("post-tags");
+
+                    for (let i = 0; i < response.length; i++) {
+
+                        let opt = document.createElement('option');
+                        opt.value = response[i]["id"];
+                        opt.innerHTML = response[i]["name"];
+                        element.appendChild(opt);
+                    }
+                },
+                error: function (error) {
+                    console.log("Не удалось получить теги", error);
+                }
+            });
+
+            //Запрашиваем авторов
+            $.ajax({
+                url: "http://localhost:8080/tags",
+                type: "GET",
+                dataType: "json",
+                success: function (response) {
+                    const element = document.getElementById("post-tags");
+
+                    for (let i = 0; i < response.length; i++) {
+
+                        let opt = document.createElement('option');
+                        opt.value = response[i]["id"];
+                        opt.innerHTML = response[i]["name"];
+                        element.appendChild(opt);
+                    }
+                },
+                error: function (error) {
+                    console.log("Не удалось получить теги", error);
+                }
+            });
+
+
         }
     });
 

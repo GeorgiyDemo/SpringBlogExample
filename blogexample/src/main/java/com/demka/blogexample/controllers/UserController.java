@@ -25,9 +25,6 @@ public class UserController {
     @GetMapping()
     public ResponseEntity<?> findAllItems() {
         List<UserDBEntity> itemList = itemService.findAll();
-        if (itemList.size() == 0) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(itemList, HttpStatus.OK);
     }
 

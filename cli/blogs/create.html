@@ -1,10 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+    <title>Создание нового поста</title>
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i" rel="stylesheet">
+    <link href="../assets/fonts/simple-line-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" rel="stylesheet">
+    <link href="../assets/css/smoothproducts.css" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="#">SpringBlogExample</a>
+        <button class="navbar-toggler" data-target="#navcol-1" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link active" href="../index.html">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="../login.html">Авторизация</a></li>
+                <li class="nav-item"><a class="nav-link" href="../registration.html">Регистрация</a></li>
+
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                       href="#" id="tagDropdownMenuLink">
+                        Теги
+                    </a>
+                    <div aria-labelledby="tagDropdownMenuLink" class="dropdown-menu">
+                        <a class="dropdown-item" href="../tags/all.html">Все теги</a>
+                        <a class="dropdown-item" href="../tags/create.html">Создание</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                       href="#" id="blogDropdownMenuLink">
+                        Блоги
+                    </a>
+                    <div aria-labelledby="blogDropdownMenuLink" class="dropdown-menu">
+                        <a class="dropdown-item" href="../blogs/all.html">Все блоги</a>
+                        <a class="dropdown-item" href="../blogs/create.html">Создание</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page login-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Добавление нового поста</h2>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="post-title">Заголовок</label>
+                    <input class="form-control item" id="post-title" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="post-slug">Slug</label>
+                    <input class="form-control" id="post-slug" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="post-author">Автор</label>
+                    <select class="form-control" id="post-author" name="post-author" required="">
+                        <option disabled="" selected="" value="">Выберите автора</option>
+                        <option value="1">автор1</option>
+                        <option value="2">автор2</option>
+                        <option value="3">автор3</option>
+                        <option value="4">автор4</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="post-tags">Теги</label>
+                    <select class="form-control" id="post-tags" name="post-tags" required="">
+                        <option disabled="" selected="" value="">Выберите теги</option>
+                        <option value="1">тег1</option>
+                        <option value="2">тег2</option>
+                        <option value="3">тег3</option>
+                        <option value="4">тег4</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="post-text">Текст</label>
+                    <textarea class="form-control" id="post-text" name="post-text" required="">
+                    </textarea>
+                </div>
+
+                <button class="btn btn-primary btn-block" id="tag-create-button">Добавить</button>
+            </div>
+        </div>
+    </section>
+
+</main>
+<footer class="page-footer dark">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>meow</p>
+    </div>
+</footer>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="../assets/js/smoothproducts.min.js"></script>
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/index.js"></script>
 </body>
+
 </html>
