@@ -1,9 +1,13 @@
 package com.demka.blogexample.entities.db;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -23,9 +27,11 @@ public class PostDBEntity {
     @JoinColumn(name = "author_id", nullable = false)
     private UserDBEntity authorPost;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "post")
     private List<CommentDBEntity> comments;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(
             name = "posts_tags",
@@ -33,9 +39,12 @@ public class PostDBEntity {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<TagDBEntity> tags;
 
+    @JsonFormat(pattern = "dd.MM.yyyy HH:mm:ss")
+    private LocalDateTime dateTime;
     private String text;
     private String title;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(
             name = "likes",

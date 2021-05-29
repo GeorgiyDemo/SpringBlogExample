@@ -10,6 +10,7 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -52,6 +53,8 @@ public class PostEntityConverter {
                 return null;
             tagsSet.add(currentTagOptional.get());
         }
+
+        entity.setDateTime(LocalDateTime.now());
         entity.setTags(tagsSet);
         return entity;
     }

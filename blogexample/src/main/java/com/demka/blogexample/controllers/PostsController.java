@@ -27,7 +27,10 @@ public class PostsController {
 
     @PostMapping()
     public ResponseEntity<?> createItem(@RequestBody PostRequestEntity item) {
-        itemService.create(postEntityConverter.convert(item));
+        PostDBEntity entity = postEntityConverter.convert(item);
+        if (entity == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        itemService.create(entity);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

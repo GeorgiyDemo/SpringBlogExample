@@ -1,5 +1,6 @@
 package com.demka.blogexample.entities.db;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

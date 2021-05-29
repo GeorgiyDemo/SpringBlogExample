@@ -49,8 +49,67 @@ $(document).ready(function () {
         }
 
         //Страница со всеми постами
+
+
         else if (location.includes("blogs/all.html")) {
 
+            //Запрашиваем посты
+            $.ajax({
+                url: "http://localhost:8080/posts",
+                type: "GET",
+                dataType: "json",
+                success: function (response) {
+
+                    const rootElement = document.getElementById("block-content");
+
+                    for (let i = 0; i < response.length; i++) {
+                        console.log(response[i])
+
+                        let rootPost = document.createElement('div');
+                        rootPost.className="clean-blog-post"
+                        let row = document.createElement("div")
+                        row.className="row"
+                        let col = document.createElement("div")
+                        col.className="col-lg-7"
+
+                        let header = document.createElement("h3")
+                        header.innerHTML = response[i]["title"]
+                        col.append(header)
+
+                        let info = document.createElement("div")
+                        info.className = "info";
+                        let span = document.createElement("span")
+                        span.className = "text-muted";
+                        span.innerHTML = response[i]["dateTime"]+" от "+response[i]["authorPost"]["login"]
+                        info.append(span)
+                        col.append(info)
+
+                        let p = document.createElement("p")
+                        p.innerHTML = response[i]["text"]
+                        col.append(p)
+
+                        let form = document.createElement("form")
+                        form.method = "get"
+                        form.action = "./blog-post.html"
+
+                        let button = document.createElement("button")
+                        button.id = "post-click"
+                        button.className = "btn btn-outline-primary btn-sm"
+                        button.type = "submit"
+                        button.innerHTML = "Подробнее"
+
+                        form.append(button)
+                        col.append(form)
+
+                        row.append(col)
+                        rootPost.append(row)
+                        rootElement.appendChild(rootPost);
+                    }
+                },
+                error: function (error) {
+                    console.log("Не удалось получить теги", error);
+                }
+            });
         }
 
     });

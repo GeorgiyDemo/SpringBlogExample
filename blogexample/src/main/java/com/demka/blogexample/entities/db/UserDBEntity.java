@@ -1,6 +1,8 @@
 package com.demka.blogexample.entities.db;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,12 +29,15 @@ public class UserDBEntity {
     private String password;
     private boolean isActive;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "authorPost")
     private Set<PostDBEntity> posts;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "authorComment")
     private Set<CommentDBEntity> comments;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "likes")
     private Set<PostDBEntity> likes;
 }

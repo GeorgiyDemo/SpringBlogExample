@@ -1,5 +1,7 @@
 package com.demka.blogexample.entities.db;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +23,7 @@ public class TagDBEntity {
     @Column(unique = true)
     private String slug;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "tags")
     private Set<PostDBEntity> posts;
 
