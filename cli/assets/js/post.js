@@ -87,14 +87,19 @@ $(document).ready(function () {
 
                         let form = document.createElement("form")
                         form.method = "get"
-                        form.action = "./blog-post.html?id="+response[i]["id"]
+                        form.action = "./blog-post.html"
+
+                        let input = document.createElement("input")
+                        input.type = "hidden";
+                        input.name = "id";
+                        input.value = response[i]["id"]
+                        form.append(input)
 
                         let button = document.createElement("button")
                         button.id = "post-click"
                         button.className = "btn btn-outline-primary btn-sm"
                         button.type = "submit"
                         button.innerHTML = "Подробнее"
-
                         form.append(button)
                         col.append(form)
 

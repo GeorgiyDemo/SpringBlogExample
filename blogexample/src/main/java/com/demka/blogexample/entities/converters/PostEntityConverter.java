@@ -7,13 +7,11 @@ import com.demka.blogexample.entities.request.PostRequestEntity;
 import com.demka.blogexample.services.TagsService;
 import com.demka.blogexample.services.UserService;
 import com.github.slugify.Slugify;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -25,7 +23,7 @@ public class PostEntityConverter {
     private final Slugify slg;
 
     @Autowired
-    public PostEntityConverter(UserService userService, TagsService tagsService){
+    public PostEntityConverter(UserService userService, TagsService tagsService) {
         this.userService = userService;
         this.tagsService = tagsService;
         slg = new Slugify();
@@ -33,12 +31,13 @@ public class PostEntityConverter {
 
     /**
      * Конвертер между моделью запроса и моделью СУБД
+     *
      * @param requestEntity - запрос
      * @return
      */
     public PostDBEntity convert(PostRequestEntity requestEntity) {
         PostDBEntity entity = new PostDBEntity();
-        entity.setSlug(slg.slugify(requestEntity.getTitle()));
+        entity.setSlug(slg.slugify("HELLLO"));
         entity.setText(requestEntity.getText());
         entity.setTitle(requestEntity.getTitle());
 
@@ -49,7 +48,7 @@ public class PostEntityConverter {
         entity.setAuthorPost(authorPostOptional.get());
 
         Set<TagDBEntity> tagsSet = new HashSet<>();
-        for (long tagId: requestEntity.getTags()) {
+        for (long tagId : requestEntity.getTags()) {
             Optional<TagDBEntity> currentTagOptional = tagsService.find(tagId);
             if (currentTagOptional.isEmpty())
                 return null;
