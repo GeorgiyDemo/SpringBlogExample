@@ -1,0 +1,58 @@
+package com.demka.blogexample.entities.converters;
+
+import com.demka.blogexample.entities.db.PostDBEntity;
+import com.demka.blogexample.entities.db.TagDBEntity;
+import com.demka.blogexample.entities.db.UserDBEntity;
+import com.demka.blogexample.entities.request.PostRequestEntity;
+import com.demka.blogexample.services.TagsService;
+import com.demka.blogexample.services.UserService;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+@Service
+public class PostEntityConverter {
+
+    private final UserService userService;
+    private final TagsService tagsService;
+
+    @Autowired
+    public PostEntityConverter(UserService userService, TagsService tagsService){
+        this.userService = userService;
+        this.tagsService = tagsService;
+    }
+
+    /**
+     * Конвертер между моделью запроса и моделью СУБД
+     * @param requestEntity - запрос
+     * @return
+     */
+    public PostDBEntity convert(PostRequestEntity requestEntity) {
+
+        PostDBEntity entity = new PostDBEntity();
+        entity.setSlug(requestEntity.getSlug());
+        entity.setText(requestEntity.getText());
+        entity.setTitle(requestEntity.getTitle());
+
+        Optional<UserDBEntity> authorPostOptional = userService.find(requestEntity.getAuthorPost());
+        //Set<Lik>
+        if (authorPostOptional.isEmpty())
+            return null;
+        entity.setAuthorPost(authorPostOptional.get());
+
+        Set<TagDBEntity> tagsSet = new HashSet<>();
+        for (long tagId: requestEntity.getTags()) {
+            Optional<TagDBEntity> currentTagOptional = tagsService.find(tagId);
+            if (currentTagOptional.isEmpty())
+                return null;
+            tagsSet.add(currentTagOptional.get());
+        }
+        entity.setTags(tagsSet);
+        return entity;
+    }
+}

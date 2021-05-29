@@ -31,6 +31,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/registration").permitAll()
 
                 //ДЛЯ ТЕСТИРОВАНИЯ, ПОТОМ УДАЛИТЬ
+                .antMatchers(HttpMethod.POST, "/posts").permitAll()
                 .antMatchers(HttpMethod.POST, "/tags").permitAll()
                 /////////////////////////////////
 

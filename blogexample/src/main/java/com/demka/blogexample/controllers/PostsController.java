@@ -1,6 +1,8 @@
 package com.demka.blogexample.controllers;
 
+import com.demka.blogexample.entities.converters.PostEntityConverter;
 import com.demka.blogexample.entities.db.PostDBEntity;
+import com.demka.blogexample.entities.request.PostRequestEntity;
 import com.demka.blogexample.services.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,15 +17,17 @@ import java.util.Optional;
 public class PostsController {
 
     private final PostsService itemService;
+    private final PostEntityConverter postEntityConverter;
 
     @Autowired
-    public PostsController(PostsService itemService) {
+    public PostsController(PostsService itemService, PostEntityConverter postEntityConverter) {
         this.itemService = itemService;
+        this.postEntityConverter = postEntityConverter;
     }
 
     @PostMapping()
-    public ResponseEntity<?> createItem(@RequestBody PostDBEntity item) {
-        itemService.create(item);
+    public ResponseEntity<?> createItem(@RequestBody PostRequestEntity item) {
+        itemService.create(postEntityConverter.convert(item));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

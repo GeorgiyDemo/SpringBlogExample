@@ -68,7 +68,7 @@ $(document).ready(function () {
             "slug": postSlugElement.value,
             "text": postTextElement.value,
             "title": postTitleElement.value,
-            "tags": postTagsElement.value,
+            "tags": [postTagsElement.value],
         };
 
         let response = await fetch("http://localhost:8080/posts", {

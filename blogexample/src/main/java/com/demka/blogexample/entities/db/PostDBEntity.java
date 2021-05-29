@@ -42,6 +42,4 @@ public class PostDBEntity {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<UserDBEntity> likes;
-
-
 }
