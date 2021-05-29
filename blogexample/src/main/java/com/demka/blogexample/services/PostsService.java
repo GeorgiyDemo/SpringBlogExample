@@ -30,6 +30,10 @@ public class PostsService {
         postsRepo.delete(client);
     }
 
+    public Optional<PostDBEntity> findBySlug(String slug) {
+        return postsRepo.findBySlug(slug);
+    }
+
     public List<PostDBEntity> findAll() {
         return postsRepo.findAll();
     }

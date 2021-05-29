@@ -39,7 +39,7 @@ public class PostDBEntity {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<TagDBEntity> tags;
 
-    @JsonFormat(pattern = "dd.MM.yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDateTime dateTime;
     private String text;
     private String title;

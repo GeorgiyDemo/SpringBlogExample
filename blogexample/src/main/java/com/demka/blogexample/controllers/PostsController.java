@@ -43,6 +43,15 @@ public class PostsController {
         return new ResponseEntity<>(itemList, HttpStatus.OK);
     }
 
+    @GetMapping("/slug/{slug}")
+    public ResponseEntity<?> findBySlug(@PathVariable(name = "slug") String slug) {
+        Optional<PostDBEntity> currentItem = itemService.findBySlug(slug);
+        if (currentItem.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(currentItem.get(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
         Optional<PostDBEntity> currentItem = itemService.find(id);

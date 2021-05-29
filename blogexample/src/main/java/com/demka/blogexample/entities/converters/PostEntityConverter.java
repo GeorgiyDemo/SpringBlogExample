@@ -6,6 +6,7 @@ import com.demka.blogexample.entities.db.UserDBEntity;
 import com.demka.blogexample.entities.request.PostRequestEntity;
 import com.demka.blogexample.services.TagsService;
 import com.demka.blogexample.services.UserService;
+import com.github.slugify.Slugify;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,13 @@ public class PostEntityConverter {
 
     private final UserService userService;
     private final TagsService tagsService;
+    private final Slugify slg;
 
     @Autowired
     public PostEntityConverter(UserService userService, TagsService tagsService){
         this.userService = userService;
         this.tagsService = tagsService;
+        slg = new Slugify();
     }
 
     /**
@@ -34,9 +37,8 @@ public class PostEntityConverter {
      * @return
      */
     public PostDBEntity convert(PostRequestEntity requestEntity) {
-
         PostDBEntity entity = new PostDBEntity();
-        entity.setSlug(requestEntity.getSlug());
+        entity.setSlug(slg.slugify(requestEntity.getTitle()));
         entity.setText(requestEntity.getText());
         entity.setTitle(requestEntity.getTitle());
 

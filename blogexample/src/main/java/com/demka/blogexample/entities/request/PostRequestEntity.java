@@ -5,7 +5,6 @@ import java.util.List;
 
 @Data
 public class PostRequestEntity {
-    private String slug;
     private Long authorPost;
     private List<Long> tags;
     private String text;
