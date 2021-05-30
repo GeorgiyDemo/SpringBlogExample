@@ -6,6 +6,7 @@ import com.demka.blogexample.entities.request.PostRequestEntity;
 import com.demka.blogexample.services.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class PostsController {
         this.postEntityConverter = postEntityConverter;
     }
 
-    @PostMapping()
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createItem(@RequestBody PostRequestEntity item) {
         PostDBEntity entity = postEntityConverter.convert(item);
         if (entity == null)

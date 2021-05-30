@@ -37,7 +37,7 @@ public class PostEntityConverter {
      */
     public PostDBEntity convert(PostRequestEntity requestEntity) {
         PostDBEntity entity = new PostDBEntity();
-        entity.setSlug(slg.slugify("HELLLO"));
+        entity.setSlug(slg.slugify(requestEntity.getTitle()));
         entity.setText(requestEntity.getText());
         entity.setTitle(requestEntity.getTitle());
 

@@ -22,7 +22,7 @@ public class TagsController {
         this.itemService = itemService;
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createItem(@RequestBody TagDBEntity item) {
         itemService.create(item);
         return new ResponseEntity<>(HttpStatus.CREATED);
