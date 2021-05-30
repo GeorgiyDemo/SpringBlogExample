@@ -30,10 +30,9 @@ public class PostsController {
     public ResponseEntity<?> createItem(@RequestBody PostRequestEntity item) {
         //TODO: ЭТА ШТУКА ВЫЗЫВАЕТ java.lang.StackOverflowError
         PostDBEntity entity = postEntityConverter.convert(item);
-        System.out.println(entity.toString());
-        //if (entity == null)
-        //    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        //itemService.create(entity);
+        if (entity == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        itemService.create(entity);
         return new ResponseEntity<>(entity.toString(), HttpStatus.NOT_IMPLEMENTED);
     }
 

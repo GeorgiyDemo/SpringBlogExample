@@ -26,11 +26,11 @@ public class PostDBEntity {
     @JoinColumn(name = "author_id", nullable = false)
     private UserDBEntity authorPost;
 
-    @JsonBackReference(value="post")
+    @JsonBackReference(value = "post")
     @OneToMany(mappedBy = "post")
     private List<CommentDBEntity> comments;
 
-    @JsonBackReference(value="posts_tags")
+    @JsonBackReference(value = "posts_tags")
     @ManyToMany
     @JoinTable(
             name = "posts_tags",
@@ -43,7 +43,7 @@ public class PostDBEntity {
     private String text;
     private String title;
 
-    @JsonBackReference(value="likes")
+    @JsonBackReference(value = "likes")
     @ManyToMany
     @JoinTable(
             name = "likes",

@@ -63,11 +63,11 @@ $(document).ready(function () {
                         console.log(response[i])
 
                         let rootPost = document.createElement('div');
-                        rootPost.className="clean-blog-post"
+                        rootPost.className = "clean-blog-post"
                         let row = document.createElement("div")
-                        row.className="row"
+                        row.className = "row"
                         let col = document.createElement("div")
-                        col.className="col-lg-7"
+                        col.className = "col-lg-7"
 
                         let header = document.createElement("h3")
                         header.innerHTML = response[i]["title"]
@@ -77,7 +77,7 @@ $(document).ready(function () {
                         info.className = "info";
                         let span = document.createElement("span")
                         span.className = "text-muted";
-                        span.innerHTML = response[i]["dateTime"]+", "+response[i]["authorPost"]["login"]
+                        span.innerHTML = response[i]["dateTime"] + ", " + response[i]["authorPost"]["login"]
                         info.append(span)
                         col.append(info)
 
@@ -112,11 +112,7 @@ $(document).ready(function () {
                     console.log("Не удалось получить теги", error);
                 }
             });
-        }
-
-
-
-        else if (location.includes("blogs/blog-post.html")) {
+        } else if (location.includes("blogs/blog-post.html")) {
 
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -124,7 +120,7 @@ $(document).ready(function () {
             console.log(id);
             //Запрашиваем посты
             $.ajax({
-                url: "http://localhost:8080/posts/"+id,
+                url: "http://localhost:8080/posts/" + id,
                 type: "GET",
                 dataType: "json",
                 success: function (response) {
@@ -134,7 +130,7 @@ $(document).ready(function () {
                     header.innerHTML = response["title"]
 
                     let postInfo = document.createElement("div");
-                    postInfo.className="post-info";
+                    postInfo.className = "post-info";
                     let spanName = document.createElement("span");
                     spanName.innerHTML = response["authorPost"]["login"]
                     let spanDate = document.createElement("span");
