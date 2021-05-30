@@ -39,4 +39,18 @@ public class UserDBEntity {
     @JsonBackReference(value = "likes")
     @ManyToMany(mappedBy = "likes")
     private Set<PostDBEntity> likes;
+
+    @Override
+    public String toString() {
+        return "UserDBEntity{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", isActive=" + isActive +
+                ", posts=" + posts +
+                ", comments=" + comments +
+                ", likes=" + likes +
+                '}';
+    }
 }

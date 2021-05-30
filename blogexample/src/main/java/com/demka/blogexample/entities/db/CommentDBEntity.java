@@ -23,4 +23,14 @@ public class CommentDBEntity {
     private PostDBEntity post;
 
     private String text;
+
+    @Override
+    public String toString() {
+        return "CommentDBEntity{" +
+                "id=" + id +
+                ", authorComment=" + authorComment +
+                ", post=" + post +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

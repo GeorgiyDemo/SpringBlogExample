@@ -30,4 +30,14 @@ public class TagDBEntity {
         this.name = name;
         this.slug = slug;
     }
+
+    @Override
+    public String toString() {
+        return "TagDBEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", slug='" + slug + '\'' +
+                ", posts=" + posts +
+                '}';
+    }
 }

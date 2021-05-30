@@ -50,4 +50,19 @@ public class PostDBEntity {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<UserDBEntity> likes;
+
+    @Override
+    public String toString() {
+        return "PostDBEntity{" +
+                "id=" + id +
+                ", slug='" + slug + '\'' +
+                ", authorPost=" + authorPost +
+                ", comments=" + comments +
+                ", tags=" + tags +
+                ", dateTime=" + dateTime +
+                ", text='" + text + '\'' +
+                ", title='" + title + '\'' +
+                ", likes=" + likes +
+                '}';
+    }
 }
