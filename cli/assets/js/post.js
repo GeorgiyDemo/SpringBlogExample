@@ -124,11 +124,45 @@ $(document).ready(function () {
             console.log(id);
             //Запрашиваем посты
             $.ajax({
-                url: "http://localhost:8080/posts",
+                url: "http://localhost:8080/posts/"+id,
                 type: "GET",
                 dataType: "json",
                 success: function (response) {
-                    console.log(response)
+                    const rootElement = document.getElementById("post-body");
+
+                    let header = document.createElement("h3")
+                    header.innerHTML = response["title"]
+
+                    let postInfo = document.createElement("div");
+                    postInfo.className="post-info";
+                    let spanName = document.createElement("span");
+                    spanName.innerHTML = response["authorPost"]["login"]
+                    let spanDate = document.createElement("span");
+                    spanDate.innerHTML = response["dateTime"];
+
+                    let p = document.createElement("p");
+                    p.innerHTML = response['text']
+
+
+                    let form = document.createElement("form")
+                    form.method = "get"
+                    form.action = "./all.html"
+
+                    let button = document.createElement("button")
+                    button.id = "post-click"
+                    button.className = "btn btn-outline-primary btn-sm"
+                    button.type = "submit"
+                    button.innerHTML = "Все посты"
+                    form.append(button)
+
+
+                    postInfo.append(spanName);
+                    postInfo.append(spanDate);
+                    rootElement.append(header);
+                    rootElement.append(postInfo);
+                    rootElement.append(p);
+                    rootElement.append(form);
+
                 },
                 error: function (error) {
                     console.log("Не удалось получить теги", error);
@@ -158,7 +192,6 @@ $(document).ready(function () {
             },
             body: JSON.stringify(varData)
         }, {mode: 'cors'}).then(function (response) {
-            console.log(response);
 
             if (response.status === 401) {
                 alert("Необходима авторизация")

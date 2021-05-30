@@ -22,7 +22,7 @@ public class TagDBEntity {
     @Column(unique = true)
     private String slug;
 
-    @JsonBackReference
+    @JsonBackReference(value="tags")
     @ManyToMany(mappedBy = "tags")
     private Set<PostDBEntity> posts;
 

@@ -28,15 +28,15 @@ public class UserDBEntity {
     private String password;
     private boolean isActive;
 
-    @JsonBackReference
+    @JsonBackReference(value = "authorPost")
     @OneToMany(mappedBy = "authorPost")
     private Set<PostDBEntity> posts;
 
-    @JsonBackReference
+    @JsonBackReference(value = "authorComment")
     @OneToMany(mappedBy = "authorComment")
     private Set<CommentDBEntity> comments;
 
-    @JsonBackReference
+    @JsonBackReference(value = "likes")
     @ManyToMany(mappedBy = "likes")
     private Set<PostDBEntity> likes;
 }
